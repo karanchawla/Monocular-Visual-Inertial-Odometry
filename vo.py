@@ -53,7 +53,7 @@ def feature_tracking(img1,img2, points1,points2,status): #track matching feature
                                 status[i]=0
                         np.delete(points1, i-indexcorrection)
                         np.delete(points2, i-indexcorrection)
-                        indexcorrection++
+                        indexcorrection+=1
 
                         
 def main():
