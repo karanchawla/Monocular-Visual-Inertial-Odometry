@@ -4,7 +4,7 @@ import cv2
 STAGE_FIRST_FRAME = 0
 STAGE_SECOND_FRAME = 1
 STAGE_DEFAULT_FRAME = 2
-kMinNumFeature = 20
+kMinNumFeature = 120
 
 lk_params = dict(winSize  = (21, 21), 
 				#maxLevel = 3,
@@ -45,13 +45,13 @@ class VisualOdometry:
 		self.px_cur = None
 		self.focal = cam.fx
 		self.pp = (cam.cx, cam.cy)
-		self.trueX, self.trueY, self.trueZ = 0, 0, 0
+		#self.trueX, self.trueY, self.trueZ = 0, 0, 0
 		self.detector = cv2.FastFeatureDetector_create(threshold=25, nonmaxSuppression=True)
-		with open('poses.txt') as f:
-			self.annotations = f.readlines()
+		#with open('poses.txt') as f:
+		#	self.annotations = f.readlines()
 
 	def getAbsoluteScale(self, frame_id):  #figure this part out later
-		ss = self.annotations[frame_id-1].strip().split()
+		'''ss = self.annotations[frame_id-1].strip().split()
 		x_prev = float(ss[3])
 		y_prev = float(ss[7])
 		z_prev = float(ss[11])
@@ -59,7 +59,7 @@ class VisualOdometry:
 		x = float(ss[3])
 		y = float(ss[7])
 		z = float(ss[11])
-		self.trueX, self.trueY, self.trueZ = x, y, z
+		self.trueX, self.trueY, self.trueZ = x, y, z'''
 		#return np.sqrt((x - x_prev)*(x - x_prev) + (y - y_prev)*(y - y_prev) + (z - z_prev)*(z - z_prev))
 		return 1
 
